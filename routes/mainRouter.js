@@ -19,4 +19,6 @@ router.get("/logout", controller.logout);
 router.get("/user", isLoggedIn, controller.userIndex);
 router.get("/admin", isAdmin, controller.adminIndex);
 router.get("/adatbazis", controller.adatbazisIndex);
+router.get("/kapcsolat", controller.kapcsolatGet);
+router.post("/kapcsolat", controller.kapcsolatPost);
 module.exports = router;

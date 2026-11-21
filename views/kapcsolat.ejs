@@ -1,0 +1,64 @@
+<%- include("partials/header") %>
+<section class="post">
+    <header class="major">
+        <h1>Kapcsolat</h1>
+        <p>
+            Kérdésed van süteményeinkkel vagy tortáinkkal
+            kapcsolatban? Írj nekünk!
+        </p>
+    </header>
+    <% if (hiba) { %>
+        <p class="contact-error"><%= hiba %></p>
+    <% } %>
+    <% if (siker) { %>
+        <p class="contact-success"><%= siker %></p>
+    <% } %>
+    <form method="POST" action="/kapcsolat">
+        <div class="fields">
+            <div class="field half">
+                <label for="nev">Név</label>
+                <input
+                    type="text"
+                    name="nev"
+                    id="nev"
+                    value="<%= adatok.nev || '' %>"
+                    minlength="2"
+                    maxlength="100"
+                    required
+                >
+            </div>
+            <div class="field half">
+                <label for="email">E-mail-cím</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value="<%= adatok.email || '' %>"
+                    maxlength="254"
+                    required
+                >
+            </div>
+            <div class="field">
+                <label for="uzenet">Üzenet</label>
+                <textarea
+                    name="uzenet"
+                    id="uzenet"
+                    rows="6"
+                    minlength="10"
+                    maxlength="5000"
+                    required
+                ><%= adatok.uzenet || '' %></textarea>
+            </div>
+        </div>
+        <ul class="actions">
+            <li>
+                <input
+                    type="submit"
+                    value="Üzenet küldése"
+                    class="primary"
+                >
+            </li>
+        </ul>
+    </form>
+</section>
+<%- include("partials/footer") %>

@@ -60,3 +60,58 @@ exports.adatbazisIndex = async (req, res) => {
         res.status(500).send("Hiba történt az adatok lekérésekor!");
     }
 };
+
+const Uzenet = require("../models/Uzenet");
+
+// Kapcsolat oldal megjelenítése
+exports.kapcsolatGet = (req, res) => {
+    res.render("kapcsolat", {
+        hiba: "",
+        siker: "",
+        adatok: {}
+    });
+};
+
+// Kapcsolat űrlap feldolgozása
+exports.kapcsolatPost = async (req, res) => {
+    const nev = String(req.body.nev || "").trim();
+    const email = String(req.body.email || "").trim();
+    const uzenet = String(req.body.uzenet || "").trim();
+
+    const adatok = { nev, email, uzenet };
+
+    // Szerveroldali ellenőrzés
+    if (
+        nev.length < 2 ||
+        nev.length > 100 ||
+        email.length > 254 ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+        uzenet.length < 10 ||
+        uzenet.length > 5000
+    ) {
+        return res.status(400).render("kapcsolat", {
+            hiba: "Kérjük, ellenőrizd a megadott adatokat!",
+            siker: "",
+            adatok
+        });
+    }
+    try {
+        await Uzenet.create({
+            nev,
+            email,
+            uzenet
+        });
+        res.render("kapcsolat", {
+            hiba: "",
+            siker: "Üzenetedet sikeresen elküldtük!",
+            adatok: {}
+        });
+    } catch (error) {
+        console.error("Üzenetmentési hiba:", error);
+        res.status(500).render("kapcsolat", {
+            hiba: "Hiba történt az üzenet mentésekor!",
+            siker: "",
+            adatok
+        });
+    }
+};

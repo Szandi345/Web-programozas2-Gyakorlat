@@ -297,3 +297,49 @@ input[type="submit"]:hover {
         padding: 20px;
     }
 }
+
+/* Kapcsolat oldal */
+
+.contact-error {
+    background: #f8d7da;
+    color: #842029;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.contact-success {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+#main form input:focus,
+#main form textarea:focus {
+    border-color: #C98D78 !important;
+}
+
+#main form input[type="submit"].primary {
+    background-color: #6B4238 !important;
+    color: white !important;
+}
+
+#main form input[type="text"],
+#main form input[type="email"],
+#main form textarea {
+    border: 2px solid #A77B6B !important;
+    border-radius: 6px;
+    background-color: #FFFDFB !important;
+    padding: 12px 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#main form input[type="text"]:focus,
+#main form input[type="email"]:focus,
+#main form textarea:focus {
+    border-color: #6B4238 !important;
+    box-shadow: 0 0 0 3px rgba(107, 66, 56, 0.18);
+    outline: none;
+}
