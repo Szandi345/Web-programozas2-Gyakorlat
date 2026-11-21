@@ -222,3 +222,78 @@ input[type="submit"]:hover {
         padding: 20px;
     }
 }
+
+/* FELHASZNÁLÓI ÉS ADMINISZTRÁTORI OLDAL */
+
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 35px;
+    background-color: #F8EFE7;
+    border: 1px solid #E8C8BC;
+    border-radius: 12px;
+}
+
+.profile-container h2,
+.profile-container h3 {
+    color: #6B4238;
+}
+
+.profile-container p {
+    color: #5C4037;
+}
+
+.profile-container hr {
+    border-color: #E8C8BC;
+    margin: 30px 0;
+}
+
+/* Adminisztrációs kártyák */
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.admin-card {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border: 1px solid #E8C8BC;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.admin-card h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.admin-card p {
+    font-size: 0.9rem;
+}
+
+.admin-coming-soon {
+    display: inline-block;
+    background-color: #E8C8BC;
+    color: #6B4238;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Mobilnézet */
+
+@media screen and (max-width: 980px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .profile-container {
+        padding: 20px;
+    }
+}

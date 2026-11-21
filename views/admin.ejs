@@ -1,4 +1,71 @@
 <%- include("partials/header") %>
-<h1>Admin page</h1>
-<p>For admin only.</p>
+<section class="post">
+    <header class="major">
+        <h1>Adminisztráció</h1>
+        <p>
+            Édes pillanatok cukrászda adminisztrátori felülete.
+        </p>
+    </header>
+    <div class="profile-container">
+        <h2>Adminisztrátori fiók</h2>
+        <p>
+            <strong>Felhasználónév:</strong>
+            <%= user.username %>
+        </p>
+        <p>
+            <strong>Jogosultság:</strong>
+            Adminisztrátor
+        </p>
+        <hr>
+        <h2>Adminisztrációs menü</h2>
+    <!-- Innen kéne majd folytani, gombok -> oldala/menük-->
+        <p>
+            Ezen az oldalon érhetők el a cukrászda adminisztrációs funkciói.
+        </p>
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h3>Sütemények kezelése</h3>
+                <p>
+                    Sütemények hozzáadása, módosítása és törlése.
+                </p>
+                <span class="admin-coming-soon">
+                    Hamarosan elkészül
+                </span>
+            </div>
+
+            <div class="admin-card">
+                <h3>Kapcsolati üzenetek</h3>
+
+                <p>
+                    A látogatók által küldött üzenetek megtekintése.
+                </p>
+                <span class="admin-coming-soon">
+                    Hamarosan elkészül
+                </span>
+            </div>
+            <div class="admin-card">
+                <h3>Statisztikák</h3>
+                <p>
+                    A sütemények adatainak grafikus megjelenítése.
+                </p>
+                <span class="admin-coming-soon">
+                    Hamarosan elkészül
+                </span>
+            </div>
+        </div>
+        <hr>
+        <ul class="actions special">
+            <li>
+                <a href="/adatbazis" class="button primary">
+                    Süteményeink
+                </a>
+            </li>
+            <li>
+                <a href="/logout" class="button">
+                    Kijelentkezés
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
 <%- include("partials/footer") %>

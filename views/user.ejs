@@ -1,4 +1,40 @@
 <%- include("partials/header") %>
-<h1>User page</h1>
-<p>Only for logged in users..</p>
+<section class="post">
+    <header class="major">
+        <h1>Felhasználói profil</h1>
+        <p>
+            Üdvözlünk az Édes pillanatok cukrászdában!
+        </p>
+    </header>
+    <div class="profile-container">
+        <h2>Fiókadataim</h2>
+        <p>
+            <strong>Felhasználónév:</strong>
+            <%= user.username %>
+        </p>
+        <p>
+            <strong>Jogosultság:</strong>
+            Felhasználó
+        </p>
+        <hr>
+        <h3>Üdvözlünk, <%= user.username %>!</h3>
+        <p>
+            Bejelentkezett felhasználóként
+            megtekintheted cukrászdánk kínálatát,
+            és felfedezheted különleges süteményeinket.
+        </p>
+        <ul class="actions special">
+            <li>
+                <a href="/adatbazis" class="button primary">
+                    Süteményeink
+                </a>
+            </li>
+            <li>
+                <a href="/logout" class="button">
+                    Kijelentkezés
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
 <%- include("partials/footer") %>
