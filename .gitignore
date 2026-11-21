@@ -1,0 +1,21 @@
+# Node.js csomagok
+node_modules/
+
+# Környezeti változók és titkos adatok
+.env
+.env.*
+!.env.example
+
+# Naplófájlok
+*.log
+npm-debug.log*
+
+# Ideiglenes fájlok
+.DS_Store
+Thumbs.db
+
+# Szerkesztő beállításai
+.vscode/
+
+# Letöltések, ha ilyen mappád van
+downloads/
