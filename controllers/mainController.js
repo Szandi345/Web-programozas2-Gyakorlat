@@ -8,6 +8,24 @@ exports.homeIndex = (req, res) => { res.render("home"); };
 exports.userIndex = (req, res) => { res.render("user"); };
 exports.adminIndex = (req, res) => { res.render("admin"); };
 
+exports.diagramIndex = async (req, res) => {
+    try {
+        const osszeg = await Suti.aggregate([
+            { $group: {_id: "$tipus", darab: { $sum: 1 } } },
+        ]);
+        const diagramAdatok = osszeg.map(item => ({
+            tipus: item._id,
+            darab: item.darab
+        }));
+        res.render("diagram", {
+            diagramJSON: JSON.stringify(diagramAdatok)
+        });
+    } catch (error) {
+        console.error("Diagram hiba:", error);
+        res.status(500).send("Hiba történt az adatok lekérésekor!");
+    }
+};
+
 exports.registerGet = (req, res) => { res.render("register"); };
 exports.registerPost = async (req, res) => {
     const existingUser = await User.findOne({ username: req.body.username });

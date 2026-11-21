@@ -1,0 +1,77 @@
+<%- include("partials/header") %>
+<article class="post featured">
+    <header class="major">
+        <h2>Típus diagram</h2>
+
+        <p>
+            Kíváncsaik voltunk: melyik típusú süteményből hány féle van?
+        </p>
+    </header>
+</article>
+<section class="posts">
+    <div style="width: 100%; max-width: 900px; margin: auto;">
+        <h2>Sütik típusonként</h2>
+
+        <canvas id="tipusDiagram"></canvas>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script id="diagram-adatok" type="application/json">
+    <%- diagramJSON %>
+</script>
+
+<script>
+    const diagramAdatok = JSON.parse(document.getElementById("diagram-adatok").textContent);
+
+    const cimke = diagramAdatok.map(item => item.tipus);
+    const ertek = diagramAdatok.map(item => item.darab);
+
+    const ctx = document.getElementById("tipusDiagram");
+
+    new Chart(ctx, {
+        type: "bar",
+
+        data: {
+            labels: cimke,
+            datasets: [{
+                label: "Sütemények száma",
+                data: ertek,
+                backgroundColor: "Coral",
+                borderColor: "Chocolate",
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            indexAxis: "y",
+            responsive: true,
+
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "Sütik eloszlása"
+                }
+            },
+
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 5,
+                        precision: 0
+                    },
+                    title: {
+                        display: true,
+                        text: "db"
+                    }
+                }
+            }
+        }
+    });
+</script>
+<%- include("partials/footer") %>
