@@ -1,8 +1,60 @@
 <%- include("partials/header") %>
-<% if(message){ %><p class="message"><%= message %></p><% } %>
-<form method="POST">
-    <input name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <button>Registration</button>
-</form>
+<section class="post">
+    <header class="major">
+        <h1>Regisztráció</h1>
+        <p>
+            Csatlakozz az Édes pillanatok cukrászda közösségéhez! Hozd létre saját fiókodat.
+        </p>
+    </header>
+    <div class="auth-container">
+        <% if (message) { %>
+            <div class="auth-message">
+                <%= message %>
+            </div>
+        <% } %>
+        <form method="POST" action="/register">
+            <div class="fields">
+                <div class="field">
+                    <label for="username">
+                        Felhasználónév
+                    </label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="Válassz felhasználónevet"
+                        autocomplete="username"
+                        minlength="3"
+                        required
+                    >
+                </div>
+                <div class="field">
+                    <label for="password">
+                        Jelszó
+                    </label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Válassz jelszót"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+                </div>
+            </div>
+            <ul class="actions special">
+                <li>
+                    <button type="submit" class="primary">
+                        Regisztráció
+                    </button>
+                </li>
+            </ul>
+        </form>
+        <p class="auth-bottom">
+            Már van felhasználói fiókod?
+            <a href="/login">Jelentkezz be!</a>
+        </p>
+    </div>
+</section>
 <%- include("partials/footer") %>

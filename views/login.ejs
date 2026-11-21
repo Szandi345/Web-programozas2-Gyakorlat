@@ -1,8 +1,59 @@
 <%- include("partials/header") %>
-<% if(message){ %><p class="message"><%= message %></p><% } %>
-<form method="POST">
-    <input name="username">
-    <input type="password" name="password">
-    <button>Login</button>
-</form>
+<section class="post">
+    <header class="major">
+        <h1>Bejelentkezés</h1>
+        <p>
+            Üdvözlünk az Édes pillanatok cukrászdában!
+            Jelentkezz be a felhasználói fiókodba.
+        </p>
+    </header>
+    <div class="auth-container">
+        <% if (message) { %>
+            <div class="auth-message">
+                <%= message %>
+            </div>
+        <% } %>
+        <form method="POST" action="/login">
+            <div class="fields">
+                <div class="field">
+                    <label for="username">
+                        Felhasználónév
+                    </label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="Add meg a felhasználóneved"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+                <div class="field">
+                    <label for="password">
+                        Jelszó
+                    </label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Add meg a jelszavad"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+            </div>
+            <ul class="actions special">
+                <li>
+                    <button type="submit" class="primary">
+                        Bejelentkezés
+                    </button>
+                </li>
+            </ul>
+        </form>
+        <p class="auth-bottom">
+            Még nincs felhasználói fiókod?
+            <a href="/register">Regisztrálj itt!</a>
+        </p>
+    </div>
+</section>
 <%- include("partials/footer") %>
