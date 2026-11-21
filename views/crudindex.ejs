@@ -21,7 +21,6 @@
                             <th>Név</th>
                             <th>Típus</th>
                             <th>Díjazott</th>
-                            <th>Árak</th>
                             <th>Mentességek</th>
                             <th>Műveletek</th>
                         </tr>
@@ -50,23 +49,6 @@
                                     <% } else { %>
                                         Nem
                                     <% } %>
-                                </td>
-                                <td>
-                                    <% const sutiArak = arak.filter(
-                                        ar => ar.sutiid === suti.id
-                                    ); %>
-                                    <% if (sutiArak.length === 0) { %>
-                                        Nincs ár megadva
-                                    <% } %>
-                                    <% sutiArak.forEach(ar => { %>
-                                        <div class="suti-price">
-                                            <strong>
-                                                <%= ar.ertek %> Ft
-                                            </strong>
-                                            /
-                                            <%= ar.egyseg %>
-                                        </div>
-                                    <% }) %>
                                 </td>
                                 <td>
                                     <% const sutiTartalmak = tartalmak.filter(

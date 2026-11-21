@@ -29,8 +29,10 @@ exports.diagramIndex = async (req, res) => {
 exports.crudRead = async (req, res) => {
     try {
         const sutik = await Suti.find().sort({ id: 1 }).lean();
+        const tartalmak = await Tartalom.find().lean();
 
-        res.render("sutik", { sutik });
+        res.render("crudindex", { sutik, tartalmak });
+        
     } catch (error) {
         console.error(error);
         res.status(500).send("Hiba a sütik lekérésekor!");
