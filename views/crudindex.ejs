@@ -1,0 +1,115 @@
+<%- include("partials/header") %>
+<article class="post">
+
+    <header class="major">
+        <h1>Süteményeink</h1>
+        <p>
+            Fedezd fel cukrászdánk finomságait! Válogass tortáink, süteményeink és különleges édességeink közül.
+        </p>
+    </header>
+    <div class="row">
+        <div class="col-12">
+
+            <h2>Sütikezelés</h2>
+            <p>
+                Az alábbi táblázatban megtekintheted és szerkesztheted süteményeink típusát, árát és mentességi információit.
+            </p>
+            <div class="table-wrapper">
+                <table class="alt suti-table">
+                    <thead>
+                        <tr>
+                            <th>Név</th>
+                            <th>Típus</th>
+                            <th>Díjazott</th>
+                            <th>Árak</th>
+                            <th>Mentességek</th>
+                            <th>Műveletek</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (sutik.length === 0) { %>
+                            <tr>
+                                <td colspan="6">
+                                    Jelenleg nincs megjeleníthető sütemény.
+                                </td>
+                            </tr>
+                        <% } %>
+                        <% sutik.forEach(suti => { %>
+                            <tr>
+                                <td>
+                                    <strong><%= suti.nev %></strong>
+                                </td>
+                                <td>
+                                    <%= suti.tipus %>
+                                </td>
+                                <td>
+                                    <% if (suti.dijazott) { %>
+                                        <span class="badge-award">
+                                            Díjazott
+                                        </span>
+                                    <% } else { %>
+                                        Nem
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% const sutiArak = arak.filter(
+                                        ar => ar.sutiid === suti.id
+                                    ); %>
+                                    <% if (sutiArak.length === 0) { %>
+                                        Nincs ár megadva
+                                    <% } %>
+                                    <% sutiArak.forEach(ar => { %>
+                                        <div class="suti-price">
+                                            <strong>
+                                                <%= ar.ertek %> Ft
+                                            </strong>
+                                            /
+                                            <%= ar.egyseg %>
+                                        </div>
+                                    <% }) %>
+                                </td>
+                                <td>
+                                    <% const sutiTartalmak = tartalmak.filter(
+                                        t => t.sutiid === suti.id
+                                    ); %>
+                                    <% if (sutiTartalmak.length === 0) { %>
+                                        -
+                                    <% } %>
+                                    <% sutiTartalmak.forEach(t => { %>
+                                        <span class="badge-free">
+                                            <%= t.mentes %>
+                                        </span>
+                                    <% }) %>
+                                </td>
+                                 <td>
+                                <a href="/sutik/<%= suti._id %>/update"
+                                   class="button small">
+                                    Szerkesztés
+                                </a>
+
+                                <form action="/sutik/<%= suti._id %>/delete"
+                                      method="POST"
+                                      style="display:inline;"
+                                      onsubmit="return confirm('Törli ezt a süteményt?');">
+
+                                    <button type="submit" class="button small">
+                                        Törlés
+                                    </button>
+                                </form>
+                            </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ul class="actions special">
+        <li>
+            <a href="/" class="button">
+                Vissza a főoldalra
+            </a>
+        </li>
+    </ul>
+</article>
+<%- include("partials/footer") %>

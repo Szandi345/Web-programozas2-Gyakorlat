@@ -26,6 +26,17 @@ exports.diagramIndex = async (req, res) => {
     }
 };
 
+exports.crudRead = async (req, res) => {
+    try {
+        const sutik = await Suti.find().sort({ id: 1 }).lean();
+
+        res.render("sutik", { sutik });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Hiba a sütik lekérésekor!");
+    }
+};
+
 exports.registerGet = (req, res) => { res.render("register"); };
 exports.registerPost = async (req, res) => {
     const existingUser = await User.findOne({ username: req.body.username });

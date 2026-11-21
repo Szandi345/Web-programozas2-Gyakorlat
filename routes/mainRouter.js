@@ -23,5 +23,6 @@ router.get("/kapcsolat", controller.kapcsolatGet);
 router.post("/kapcsolat", controller.kapcsolatPost);
 router.get("/uzenetek", isLoggedIn, controller.uzenetIndex);
 router.get("/diagram", controller.diagramIndex);
+router.get("/crudindex", isAdmin, controller.crudRead);
 
 module.exports = router;
