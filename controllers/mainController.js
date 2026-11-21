@@ -1,5 +1,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const Suti = require("../models/Suti");
+const Ar = require("../models/Ar");
+const Tartalom = require("../models/Tartalom");
 
 exports.homeIndex = (req, res) => { res.render("home"); };
 exports.userIndex = (req, res) => { res.render("user"); };
@@ -39,4 +42,21 @@ exports.loginPost = async (req, res) => {
 };
 exports.logout = (req, res) => {
     req.session.destroy(() => { res.redirect("/"); });
+};
+
+exports.adatbazisIndex = async (req, res) => {
+    try {
+        const sutik = await Suti.find().sort({ id: 1 }).lean();
+        const arak = await Ar.find().lean();
+        const tartalmak = await Tartalom.find().lean();
+
+        res.render("adatbazis", {
+            sutik,
+            arak,
+            tartalmak
+        });
+    } catch (error) {
+        console.error("Adatbázis hiba:", error);
+        res.status(500).send("Hiba történt az adatok lekérésekor!");
+    }
 };

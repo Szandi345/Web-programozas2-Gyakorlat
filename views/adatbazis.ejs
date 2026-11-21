@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cukrászda - Süteményeink</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Cukrászdánk süteményei</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Típus</th>
+                <th>Díjazott</th>
+                <th>Árak</th>
+                <th>Mentességek</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% sutik.forEach(suti => { %>
+                <tr>
+                    <td><%= suti.nev %></td>
+                    <td><%= suti.tipus %></td>
+                    <td><%= suti.dijazott ? "Igen" : "Nem" %></td>
+                    <td>
+                        <% arak.filter(ar => ar.sutiid === suti.id)
+                            .forEach(ar => { %>
+                            <div>
+                                <%= ar.ertek %> Ft /
+                                <%= ar.egyseg %>
+                            </div>
+                        <% }) %>
+                    </td>
+                    <td>
+                        <% tartalmak.filter(t => t.sutiid === suti.id)
+                            .forEach(t => { %>
+                            <div><%= t.mentes %></div>
+                        <% }) %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
