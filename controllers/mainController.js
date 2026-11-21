@@ -61,6 +61,19 @@ exports.adatbazisIndex = async (req, res) => {
     }
 };
 
+exports.uzenetIndex = async (req, res) => {
+    try {
+        const uzenetek = await Uzenet.find().sort({ id: 1 }).lean();
+
+        res.render("uzenetek", {
+            uzenetek
+        });
+    } catch (error) {
+        console.error("Adatbázis hiba:", error);
+        res.status(500).send("Hiba történt az adatok lekérésekor!");
+    }
+};
+
 const Uzenet = require("../models/Uzenet");
 
 // Kapcsolat oldal megjelenítése

@@ -1,0 +1,60 @@
+<%- include("partials/header") %>
+<article class="post featured">
+    <header class="major">
+
+        <h2>Üzenetfal</h2>
+
+        <p>
+            Kérdéseitek, gondolataitok
+        </p>
+    </header>
+</article>
+   <div class="row">
+        <div class="col-12">
+
+            <h2>Üzenetek</h2>
+
+            <div class="table-wrapper">
+                <table class="alt suti-table">
+                    <thead>
+                        <tr>
+                            <th>Név</th>
+                            <th>Üzenet</th>
+                            <th>Dátum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (uzenetek.length === 0) { %>
+                            <tr>
+                                <td colspan="3">
+                                    Jelenleg nincs megjeleníthető üzenet.
+                                </td>
+                            </tr>
+                        <% } %>
+                        <% uzenetek.forEach(uzenet => { %>
+                            <tr>
+                                <td>
+                                    <strong><%= uzenet.nev %></strong>
+                                </td>
+                                <td>
+                                    <%= uzenet.uzenet %>
+                                </td>
+                                <td>
+                                    <%= uzenet.datum %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ul class="actions special">
+        <li>
+            <a href="/" class="button">
+                Vissza a főoldalra
+            </a>
+        </li>
+    </ul>
+</article>
+<%- include("partials/footer") %>

@@ -21,4 +21,5 @@ router.get("/admin", isAdmin, controller.adminIndex);
 router.get("/adatbazis", controller.adatbazisIndex);
 router.get("/kapcsolat", controller.kapcsolatGet);
 router.post("/kapcsolat", controller.kapcsolatPost);
+router.get("/uzenetek", isLoggedIn, controller.uzenetIndex);
 module.exports = router;
