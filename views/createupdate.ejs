@@ -1,0 +1,69 @@
+<%- include("partials/header") %>
+
+<article class="post featured">
+    <header class="major">
+        <h2><%= cim %></h2>
+    </header>
+</article>
+
+<div class="row">
+    <div class="col-12">
+
+        <form action="<%= action %>" method="POST">
+
+            <div class="fields">
+
+                <div class="field">
+                    <label for="nev">Név</label>
+                    <input
+                        type="text"
+                        name="nev"
+                        id="nev"
+                        value="<%= suti.nev || '' %>"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="tipus">Típus</label>
+                    <input
+                        type="text"
+                        name="tipus"
+                        id="tipus"
+                        value="<%= suti.tipus || '' %>"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <input
+                        type="checkbox"
+                        name="dijazott"
+                        id="dijazott"
+                        <%= suti.dijazott ? "checked" : "" %>
+                    >
+                    <label for="dijazott">Díjazott</label>
+                </div>
+
+            </div>
+
+            <ul class="actions">
+                <li>
+                    <button type="submit" class="primary">
+                        Mentés
+                    </button>
+                </li>
+
+                <li>
+                    <a href="/crudindex" class="button">
+                        Mégse
+                    </a>
+                </li>
+            </ul>
+
+        </form>
+
+    </div>
+</div>
+
+<%- include("partials/footer") %>

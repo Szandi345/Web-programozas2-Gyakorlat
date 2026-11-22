@@ -39,6 +39,40 @@ exports.crudRead = async (req, res) => {
     }
 };
 
+exports.showCrudCreate = (req, res) => {
+    res.render("createupdate", {
+        suti: {},
+        cim: "Új süti hozzáadása",
+        action: "/crudindex/uj"
+    });
+};
+
+exports.crudCreate = async (req, res) => {
+    try {
+        const { nev, tipus } = req.body;
+
+        if (!nev || !tipus) {
+            return res.status(400).send("A név és a típus kötelező!");
+        }
+
+        const utolsoSuti = await Suti.findOne().sort({ id: -1 }).lean();
+        const ujId = utolsoSuti ? utolsoSuti.id + 1 : 1;
+
+        await Suti.create({
+            id: ujId,
+            nev: nev.trim(),
+            tipus: tipus.trim(),
+            dijazott: req.body.dijazott === "on"
+        });
+
+        res.redirect("/crudindex");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Hiba a süti mentésekor!");
+    }
+};
+
+
 exports.registerGet = (req, res) => { res.render("register"); };
 exports.registerPost = async (req, res) => {
     const existingUser = await User.findOne({ username: req.body.username });
