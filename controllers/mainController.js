@@ -98,7 +98,6 @@ exports.crudUpdate = async (req, res) => {
         if (!nev || !tipus) {
             return res.status(400).send("A név és a típus kötelező!");
         }
-
         const suti = await Suti.findByIdAndUpdate(
             req.params.id,
             {
@@ -117,6 +116,21 @@ exports.crudUpdate = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send("Hiba a módosításkor!");
+    }
+};
+
+exports.crudDelete = async (req, res) => {
+    try {
+        const suti = await Suti.findByIdAndDelete(req.params.id);
+
+        if (!suti) {
+            return res.status(404).send("Nincs ilyen süti az adatbázisban!");
+        }
+
+        res.redirect("/crudindex");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Hiba a törléskor!");
     }
 };
 

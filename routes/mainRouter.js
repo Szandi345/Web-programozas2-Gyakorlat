@@ -28,5 +28,6 @@ router.get("/crudindex/uj", isAdmin, controller.showCrudCreate);
 router.post("/crudindex/uj", isAdmin, controller.crudCreate);
 router.get("/crudindex/:id/edit", isAdmin, controller.showCrudUpdate);
 router.post("/crudindex/:id/edit", isAdmin, controller.crudUpdate);
+router.post("/crudindex/:id/delete", isAdmin, controller.crudDelete);
 
 module.exports = router;
