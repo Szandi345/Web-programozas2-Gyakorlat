@@ -1,6 +1,3 @@
-# Node.js csomagok
-node_modules/
-
 # Környezeti változók és titkos adatok
 .env
 .env.*
