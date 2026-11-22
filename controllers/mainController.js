@@ -72,6 +72,53 @@ exports.crudCreate = async (req, res) => {
     }
 };
 
+exports.showCrudUpdate = async (req, res) => {
+    try {
+        const suti = await Suti.findById(req.params.id).lean();
+
+        if (!suti) {
+            return res.status(404).send("Nincs ilyen süti az adatbázisban!");
+        }
+
+        res.render("createupdate", {
+            suti,
+            cim: "Süti szerkesztése",
+            action: `/crudindex/${suti._id}/edit`
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Hiba a süti lekérésekor!");
+    }
+};
+
+exports.crudUpdate = async (req, res) => {
+    try {
+        const { nev, tipus } = req.body;
+
+        if (!nev || !tipus) {
+            return res.status(400).send("A név és a típus kötelező!");
+        }
+
+        const suti = await Suti.findByIdAndUpdate(
+            req.params.id,
+            {
+                nev: nev.trim(),
+                tipus: tipus.trim(),
+                dijazott: req.body.dijazott === "on"
+            },
+            { runValidators: true }
+        );
+
+        if (!suti) {
+            return res.status(404).send("Nincs ilyen süti az adatbázisban!");
+        }
+
+        res.redirect("/crudindex");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Hiba a módosításkor!");
+    }
+};
 
 exports.registerGet = (req, res) => { res.render("register"); };
 exports.registerPost = async (req, res) => {

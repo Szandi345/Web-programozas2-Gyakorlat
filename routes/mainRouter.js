@@ -26,5 +26,7 @@ router.get("/diagram", controller.diagramIndex);
 router.get("/crudindex", isAdmin, controller.crudRead);
 router.get("/crudindex/uj", isAdmin, controller.showCrudCreate);
 router.post("/crudindex/uj", isAdmin, controller.crudCreate);
+router.get("/crudindex/:id/edit", isAdmin, controller.showCrudUpdate);
+router.post("/crudindex/:id/edit", isAdmin, controller.crudUpdate);
 
 module.exports = router;
