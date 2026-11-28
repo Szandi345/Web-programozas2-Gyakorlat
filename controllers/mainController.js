@@ -189,7 +189,7 @@ exports.adatbazisIndex = async (req, res) => {
 
 exports.uzenetIndex = async (req, res) => {
     try {
-        const uzenetek = await Uzenet.find().sort({ id: 1 }).lean();
+        const uzenetek = await Uzenet.find().sort({ datum: -1 }).lean();
 
         res.render("uzenetek", {
             uzenetek
